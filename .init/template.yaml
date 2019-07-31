@@ -1,0 +1,52 @@
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  Function:
+    Properties:
+      CodeUri: s3://stackery-demo-assets/2b046eeab31ebf54c103ec68a1395a24
+      Description: Serverless Summer School Local Debug Workshop Function
+      Environment:
+        Variables:
+          TABLE_ARN:
+            Fn::GetAtt:
+            - Table
+            - Arn
+          TABLE_NAME:
+            Ref: Table
+      Events:
+        Topic:
+          Properties:
+            Topic:
+              Ref: Topic
+          Type: SNS
+      FunctionName:
+        Fn::Sub: ${AWS::StackName}-Function
+      Handler: index.handler
+      MemorySize: 128
+      Policies:
+      - AWSXrayWriteOnlyAccess
+      - DynamoDBCrudPolicy:
+          TableName:
+            Ref: Table
+      Runtime: nodejs10.x
+      Timeout: 30
+      Tracing: Active
+    Type: AWS::Serverless::Function
+  Table:
+    Properties:
+      AttributeDefinitions:
+      - AttributeName: id
+        AttributeType: S
+      BillingMode: PAY_PER_REQUEST
+      KeySchema:
+      - AttributeName: id
+        KeyType: HASH
+      StreamSpecification:
+        StreamViewType: NEW_AND_OLD_IMAGES
+      TableName:
+        Fn::Sub: ${AWS::StackName}-Table
+    Type: AWS::DynamoDB::Table
+  Topic:
+    Properties:
+      TopicName:
+        Fn::Sub: ${AWS::StackName}-Topic
+    Type: AWS::SNS::Topic
