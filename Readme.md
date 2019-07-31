@@ -6,7 +6,7 @@ Have you been frustrated trying to figure out how to locally debug a Lambda Func
 ### Setup
 You need a few things to start developing serverlessly:
 
-* An AWS account (sign up here: https://portal.aws.amazon.com/billing/signup)
+* An AWS account: https://portal.aws.amazon.com/billing/signup
 * The AWS CLI: https://aws.amazon.com/cli/
 * The AWS Serverless Application Model (SAM) CLI: https://aws.amazon.com/serverless/sam/
 * The Stackery CLI: https://docs.stackery.io/docs/using-stackery/cli/

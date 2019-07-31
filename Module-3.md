@@ -6,7 +6,7 @@ Now, let's change into the src/Function directory. The first thing we'll want to
 aws logs filter-log-events --log-group-name /aws/lambda/sss-sns-to-db-Function --query 'events[*].[message]' --output text | tr '\r' '\n'
 ```
 
-It should look something like:
+Copy and paste the event message into an event.json file. It should look something like:
 ```JSON
 {
   "Records": [
