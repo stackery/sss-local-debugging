@@ -34,7 +34,7 @@ Copy and paste the event message into an event.json file. It should look somethi
 
 We're going to debug the function we provisioned in AWS Lambda using the IAM Role and environment variable values it was provisioned with. This enables us to locate and access the DynamoDB table to store the SNS message into. To debug the function, we need to know its ARN. The ARN looks like:
 ```
-arn:aws:lambda:<region>:<AWS account ID>:function/sss-sns-to-db-Function
+arn:aws:lambda:<region>:<AWS account ID>:function:sss-sns-to-db-Function
 ```
 
 You can get your region and account ID by running the following commands:
